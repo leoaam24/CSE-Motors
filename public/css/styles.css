@@ -4,3 +4,175 @@
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  background-image: url("/images/site/checkerboard.jpg");
+}
+
+#wrapper {
+  width: 70vw;
+  margin: 0 auto;
+  border: 3px solid aqua ;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: white;
+}
+
+/******* Header Style Starts Here ***************/
+
+#top-header {
+  display: flex;
+  /* grid-template-columns: .5fr .5fr; */
+  justify-content: space-between;
+  
+}
+
+.siteName a{
+  color: black;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+#tools {
+  justify-content: center;
+}
+
+#tools a{
+  color: black;
+  justify-self: end;
+  text-decoration: none;
+}
+
+/******* Navigation Style Starts Here ***************/
+nav {
+  background-color: rgb(53, 17, 110);
+}
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+nav ul li {
+  padding: .7rem;
+  color: white;
+  list-style: none;
+}
+
+nav ul li:hover{
+  background-color: rgb(66, 23, 134);
+}
+
+nav ul li a{
+  color: white;
+  text-decoration: none;
+}
+
+/******* Main Style Starts Here ***************/
+#hero-wrapper {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ margin-bottom: 20vh;
+}
+
+.hero-call-to-action {
+  font-size: 1.5rem;
+  color: #05b0d2;
+  left: 17vw;
+  position: absolute;
+  background-color: #ffffff6e;
+  padding: 2rem;
+  z-index: 9999999;
+}
+
+.hero-call-to-action h3{
+  margin: .5rem auto;
+}
+
+#hero-wrapper img {
+  width: 100vw;
+}
+
+#ctaBtn{
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #05b0d2;
+  width: 90%;
+  padding: 1rem;
+}
+
+#ctaBtn:hover{
+  background-color: #0caccc;
+}
+
+#car-info {
+  display: grid;
+  grid-template-columns: .5fr .5fr ;
+  grid-template-rows: .5fr .5fr;
+  gap: 2rem;
+}
+
+#car-info h2{
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.car-reviews {
+  font-size: 1.75rem;
+  grid-column: 2/2;
+}
+
+.car-reviews ul li {
+  margin: .75rem;
+}
+
+
+.car-upgrades{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  height: 100%;
+}
+
+.car-upgrades ul{
+  display: grid;
+  grid-template-columns: .5fr .5fr;
+  grid-template-rows: .5fr .5fr;
+  gap: 10px;
+  padding: 0;
+}
+
+.car-upgrades ul li{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.img-holder {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(53, 17, 110);
+  border: 2px solid rgba(0,0,0,.5);
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+
+.car-upgrades ul li a {
+  margin: 0;
+  padding: .5rem;
+  text-align: center;
+}
+
+
+
+
+
+
+
