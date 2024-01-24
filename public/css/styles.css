@@ -76,31 +76,42 @@ nav ul li a{
  margin-bottom: 20vh;
 }
 
+#hero-wrapper img {
+  width: 90%;
+}
+
 .hero-call-to-action {
+  display: flex;
+  flex-direction: column;
   font-size: 1.5rem;
-  color: #05b0d2;
+  color: rgb(53, 17, 110);
   left: 17vw;
   position: absolute;
   background-color: #ffffff6e;
   padding: 2rem;
+  justify-content: flex-start;
   z-index: 9999999;
 }
 
-.hero-call-to-action h3{
-  margin: .5rem auto;
+.hero-call-to-action h2{
+  margin: .2rem .5rem;
 }
 
-#hero-wrapper img {
-  width: 100vw;
+.hero-call-to-action h3{
+  margin: .1rem .5rem;
 }
+
 
 #ctaBtn{
+  align-self: center;
   cursor: pointer;
   border: none;
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: #05b0d2;
+  background-color: rgb(53, 17, 110);
+  color: #eee;
   width: 90%;
+  margin: 1rem;
   padding: 1rem;
 }
 
@@ -170,8 +181,109 @@ nav ul li a{
   text-align: center;
 }
 
+/******* MOBILE VIEW***********
+******************************/
+
+@media screen and (min-width:590px)and (max-width:768px) {
+
+  #hero-wrapper {
+    margin-bottom: 10vh;
+  }
+
+  .hero-call-to-action {
+    font-size: 1rem;
+    width: 30vw;
+    flex-grow: 1;
+    padding: 0;
+    margin: .5rem;
+  }
+
+  .hero-call-to-action h2{
+    font-size: 1.5rem;
+  }
+
+  #ctaBtn {
+    font-size: 1rem;
+    width: 70%;
+  }
+
+  #hero-wrapper img {
+    width: 50vw;
+  }
+
+  #car-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #car-info h2{
+    font-size: 1.5rem;
+  }
+
+  .car-reviews {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width:589px) {
+
+  nav ul{
+    padding: 0;
+  }
+
+  nav ul li a{
+    flex-shrink: 1;
+    font-size: .5rem;
+  }
 
 
+  #hero-wrapper {
+    margin-bottom: 5vh;
+  }
+
+  .hero-call-to-action{
+    width: 30vw;
+    flex-grow: 1;
+    padding: 0;
+    margin: .5rem;
+  }
+
+  .hero-call-to-action h2 {
+    font-size: 1rem;
+  }
+
+  .hero-call-to-action h3 {
+    font-size: .7rem;
+  }
+
+  #ctaBtn {
+    font-size: .5rem;
+    width: 70%;
+    padding: .5rem;
+  }
+
+  #car-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #car-info h2{
+    font-size: 1rem;
+  }
+
+  .car-reviews {
+    font-size: .8rem;
+  }
+
+  .car-upgrades {
+    font-size: .8rem;
+  }
+
+  #car-info h2{
+    margin-bottom: 1rem;
+  }
+
+}
 
 
 

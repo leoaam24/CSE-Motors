@@ -10,6 +10,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
+const baseController = require("./controllers/baseController")
+const invetoryRoute = require("./routes/inventoryRoute")
 
 
 /* ***********************
@@ -22,9 +24,10 @@ app.set("layout","./layouts/layout")
  * Routes
  *************************/
 app.use(static)
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+//Index route
+app.get("/", baseController.buildHome)
+// Inventory route
+app.use("/inv", invetoryRoute)
 
 /* ***********************
  * Local Server Information
