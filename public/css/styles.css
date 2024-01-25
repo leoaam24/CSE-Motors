@@ -181,6 +181,25 @@ nav ul li a{
   text-align: center;
 }
 
+/******* VEHICLE LISTING***********
+***********************************/
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px ;
+}
+
+#inv-display li{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 1rem;
+}
+
 /******* MOBILE VIEW***********
 ******************************/
 
