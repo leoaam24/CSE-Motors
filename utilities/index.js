@@ -12,7 +12,7 @@ Util.getNav = async function (req, res, next) {
         list += "<li>"
         list +=
             '<a href="/inv/type/' +
-            row.classification_id +
+            row.classification_id + ' '+
             '"title="See our inventory of ' +
             row.classification_name +
             ' vehicles">' +
@@ -79,7 +79,7 @@ Util.buildInventoryGrid = async function(data){
         subgrid += '<h3> Milage: ' + new Intl.NumberFormat('en-US').format(data[0].inv_miles) + '</h3>'
         subgrid += '<h3> Color: ' + data[0].inv_color + '</h3>'
         subgrid += '<h3 class="car-description">' + data[0].inv_description + '</h3>'
-        subgrid += '<input type="submit" id="purchaseBtn" value="Purchase Now"></input>'
+        subgrid += '<input type="submit" id="purchaseBtn" value="Purchase Now">'
         subgrid += '</div>'
         grid += subgrid
         grid += '</div>'
