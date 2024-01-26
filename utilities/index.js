@@ -36,7 +36,7 @@ Util.buildClassificationGrid = async function(data){
         grid = '<ul id="inv-display">'
         data.forEach(vehicle => {
             grid += '<li>'
-            grid += '<a href="../../inv/detail' + vehicle.inv_id
+            grid += '<a href="../../inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + 'details"><img src="' + vehicle.inv_thumbnail
             +'" alt="Image of' + vehicle.inv_make + ' ' +vehicle.inv_model
@@ -44,7 +44,7 @@ Util.buildClassificationGrid = async function(data){
             grid += '<div class="namePrice">'
             grid += '<hr />'
             grid += '<h2>'
-            grid += '<a href="../../inv/detail' + vehicle.inv_id +'" title="View '
+            grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View '
             + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
             + vehicle.inv_make + ' ' + vehicle.inv_model +  '</a>'
             grid += '</h2>'
@@ -56,6 +56,37 @@ Util.buildClassificationGrid = async function(data){
         grid += '</ul>'
     } else {
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+
+    return grid
+}
+
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildInventoryGrid = async function(data){
+    let grid
+    let subgrid
+    if (data){
+        grid = '<div class="car-info">'
+        grid += '<img src="' + data[0].inv_image
+        + '" alt="Image of ' + data[0].inv_make + ' ' + data[0].inv_model
+        + ' on CSE Motors" title="View of' + ' ' + data[0].inv_make + ' ' + data[0].inv_model + '" />'
+        subgrid = '<div class="car-details">'
+        subgrid += '<h2>' + data[0].inv_year+ ' ' + data[0].inv_make+ ' ' + data[0].inv_model +'</h2>'
+        subgrid += '<hr>'
+        subgrid += '<h3 class="car-price-wrapper"> No-Haggle Price' + '<span class="car-price">' + ' ' +'$'+new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</span>' + '</h3>'
+        subgrid += '<h3> Milage: ' + new Intl.NumberFormat('en-US').format(data[0].inv_miles) + '</h3>'
+        subgrid += '<h3> Color: ' + data[0].inv_color + '</h3>'
+        subgrid += '<h3 class="car-description">' + data[0].inv_description + '</h3>'
+        subgrid += '<input type="submit" id="purchaseBtn" value="Purchase Now"></input>'
+        subgrid += '</div>'
+        grid += subgrid
+        grid += '</div>'
+        
+        
+    } else {
+        grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
     }
 
     return grid
