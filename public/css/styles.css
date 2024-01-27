@@ -312,7 +312,7 @@ nav ul li a{
 /******* MOBILE VIEW***********
 ******************************/
 
-@media screen and (min-width:590px)and (max-width:768px) {
+@media screen and (min-width:590px)and (max-width:1079px) {
 
   #hero-wrapper {
     margin-bottom: 10vh;
