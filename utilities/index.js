@@ -68,6 +68,7 @@ Util.buildInventoryGrid = async function(data){
     let grid
     let subgrid
     if (data){
+        try {
         grid = '<div class="car-info">'
         grid += '<img src="' + data[0].inv_image
         + '" alt="Image of ' + data[0].inv_make + ' ' + data[0].inv_model
@@ -82,13 +83,14 @@ Util.buildInventoryGrid = async function(data){
         subgrid += '<input type="submit" id="purchaseBtn" value="Purchase Now">'
         subgrid += '</div>'
         grid += subgrid
-        grid += '</div>'
-        
-        
+        grid += '</div>' 
+    } catch(err){
+        throw err
+    }
     } else {
         grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
     }
-
+    
     return grid
 }
 

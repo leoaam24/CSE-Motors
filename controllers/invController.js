@@ -7,6 +7,7 @@ const invCont = {}
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
+    try {
     const classification_id = req.params.classificationId
     const data = await invModel.getInventoryByClassificationId(classification_id)
     const grid = await utilities.buildClassificationGrid(data)
@@ -17,15 +18,20 @@ invCont.buildByClassificationId = async function (req, res, next) {
         nav,
         grid,
     })
+    } catch(err) {
+        console.log(err)
+        throw(err)
+    }
+    
 }
 
 /* ***************************
  *  Build inventory by inventory view
  * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
+    try {
     const inventory_id = req.params.inventoryId
     const data = await invModel.getInventoryByInventoryId(inventory_id)
-    console.log(data)
     const grid = await utilities.buildInventoryGrid(data)
     let nav = await utilities.getNav()
     const inventoryName = data[0].inv_make
@@ -34,6 +40,8 @@ invCont.buildByInventoryId = async function (req, res, next) {
         nav,
         grid,
     })
-    
+    } catch(err){
+        throw(err)
+    }
 }
 module.exports = invCont

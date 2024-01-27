@@ -11,7 +11,7 @@ const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
-const invetoryRoute = require("./routes/inventoryRoute")
+const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
 
 
@@ -28,11 +28,11 @@ app.use(static)
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory route
-app.use("/inv", invetoryRoute)
+app.use("/inv", inventoryRoute)
+// File not Found Error
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
-
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
@@ -45,7 +45,6 @@ app.use(async (err, req, res, next) => {
     message = 'Oh no! There was a crash. Maybe try a different route?'
   }
   console.error(`Error at:${err.status} "${req.originalUrl}" : ${err.message}`)
-
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
