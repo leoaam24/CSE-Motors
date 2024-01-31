@@ -94,6 +94,25 @@ Util.buildInventoryGrid = async function(data){
     return grid
 }
 
+/* **************************************
+* Build the login view HTML
+* ************************************ */
+Util.buildLoginView = async function(){
+    let myForm
+    myForm = '<div id=form-wrapper>'
+    myForm += '<form class="myForm">'
+    myForm += '<label for="account_email">Email</label>'
+    myForm += '<input type="email" id="account_email" name="account_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please Enter a Valid Email" placeholder="Email" autofocus required>'
+    myForm += '<label for="account_password">Password</label>'
+    myForm += '<input type="password" id="account_password" name="account_password" placeholder="Password" title="Please Enter Your Password" required>'
+    myForm += '<span><i>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></span>'
+    myForm += '<input type="submit" Value="LOGIN" id="loginBtn">'
+    myForm += '<p>No account?<span class="signUp"><a href="/account/register">Sign-Up</a></span></p>'
+    myForm += '</form>'
+    myForm += '</div>'
+
+    return myForm
+}
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
