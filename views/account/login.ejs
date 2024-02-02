@@ -1,8 +1,28 @@
 <% if (title) { %>
     <h1><%- title %></h1>
-    <%- message %>
 <% } else {
     res.redirect('/')
 } %>
 
-<%- myForm %>
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id=form-wrapper>
+<form class="myForm" id="loginForm" action="/account/login" method="post">
+<label for="account_email">Email</label>
+<input type="email" id="account_email" name="account_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please Enter a Valid Email" placeholder="Email" autofocus required>
+<label for="account_password">Password</label>
+<input type="password" id="account_password" name="account_password" placeholder="Password" title="Please Enter Your Password" class="login_pass" required>
+<span><i>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></span>
+<input type="submit" Value="LOGIN" id="loginBtn">
+<p>No account?<span class="signUp"><a href="/account/register">Sign-Up</a></span></p>
+</form>
+</div>
+

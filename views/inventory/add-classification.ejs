@@ -1,0 +1,24 @@
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="addClassification-wrapper">
+    <form action="/inv/addClassification" method="post" name="addClassificationForm" class="addClassForm">
+        <label for="classification_name">New Classification</label>
+        <input type="text" name="classification_name" id="classification_name" pattern="\S+" autofocus required>
+        <input type="submit" id="addClassBtn" value="Add Classification">
+    </form>
+    
+</div>

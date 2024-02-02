@@ -1,0 +1,48 @@
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="addInventory-wrapper">
+    <form action="/inv/addInventory" method="post" name="addInventory" id="addInvForm">
+        <label for="classification_id">Classifications</label>
+        <select name="classification_id" id="classification_id">
+        <% if(classNames) {%>
+        <% classNames.forEach(classification => { %>
+            <option value="<%=classification.classification_id%>"><%=classification.classification_name%></option>
+           <%})%>
+        </select>
+        <% } %>
+        <label for="inv_make">Make</label>
+        <input type="text" name="inv_make" id="inv_make" placeholder="Make" autofocus required>
+        <label for="inv_model">Model</label>
+        <input type="text" name="inv_model" id="inv_model" placeholder="Model" required>
+        <label for="inv_year">Year</label>
+        <input type="text" name="inv_year" id="inv_year" placeholder="Year" required>
+        <label for="inv_description">Description</label>
+        <textarea id="inv_description" name="inv_description" maxlength="500" placeholder="Description" required></textarea>
+        <label for="inv_image">Image Path</label>
+        <input type="text" name="inv_image" id="inv_image" value="/images/vehicles/no-image.png" placeholder="Image Path" required>
+        <label for="inv_thumbnail">Thumbnail Path</label>
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="/images/vehicles/no-image.png" placeholder="Thumbnail Path" required>
+        <label for="inv_price">Price</label>
+        <input type="text" name="inv_price" id="inv_price" pattern="[0-9]*" placeholder="Price" required>
+        <label for="inv_miles">Miles</label>
+        <input type="text" name="inv_miles" id="inv_miles" pattern="[0-9]*" placeholder="Miles" required>
+        <label for="inv_color">Color</label>
+        <input type="color" name="inv_color" id="inv_color">
+        <input type="submit" id="addInvBtn" value="Add Car">
+    </form>
+    
+</div>

@@ -11,7 +11,16 @@ router.get("/login", utilities.handleErrors(accCont.buildLogin))
 router.get("/register", utilities.handleErrors(accCont.buildRegister))
 
 // Route to Post Register
-router.post("/register",regValidate.registrationRules(), regValidate.checkRegData, accCont.registerAccount)
+router.post("/register", regValidate.registrationRules(), regValidate.checkRegData, utilities.handleErrors(accCont.registerAccount))
 
-
+// Process the login attempt
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors((req, res) => {
+    res.status(200).send('login process')
+  })
+)
+  
 module.exports = router

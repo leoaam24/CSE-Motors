@@ -301,7 +301,7 @@ nav ul li a{
   align-self: center;
   border-radius: 15px;
   padding: .75rem;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -329,6 +329,11 @@ nav ul li a{
 
 .myForm fieldset span{
   margin-bottom: .5rem;
+}
+
+.myForm label{
+  font-weight: bold;
+  line-height: 1.5;
 }
 
 
@@ -369,20 +374,138 @@ nav ul li a{
   padding: 1rem;
 }
 
-/******* validation styles*****************
+/******* MANAGEMENT STYLES*****************
 ******************************************/
-input:required:invalid, input:focus:invalid {
-  border-left:6px solid red;
- }
+#management-wrapper{
+  border: 3px solid black;
+  border-radius: 1rem;
+  width: fit-content;
 
- input:required:valid {
-  border-left:6px solid green;
+}
+
+#management-wrapper ul {
+  padding: .5rem;
+  margin: 0 auto 0 auto;
+}
+
+#management-wrapper ul li{
+  width: 100%;
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: .5rem;
+  width: fit-content;
+  border-radius: 10px;
+  text-align: center;
+  padding: .5rem;
+  background-color: #35116e;
+  transition: background-color .5s;
+}
+
+#management-wrapper ul li:hover{
+  background-color:#6c27db;
+}
+
+#management-wrapper ul li a{
+  width: 100%;
+  color: #eee;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/******* ADD INVENTORY STYLE*****************
+********************************************/
+#addInventory-wrapper{
+  background-color: #35116e;
+  width: 40%;
+  padding: 1.5rem;
+  margin: auto;
+  border-radius: 15px;
+}
+#addInvForm{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 1rem;
+}
+
+#addInvForm label {
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+#addInvForm input{
+  padding: .50rem;
+  margin-bottom: 1rem;
+}
+
+#classification_id {
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding: .5rem;
+}
+
+#inv_description {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+/******* ADD CLASSIFICATION STYLE************
+********************************************/
+#addClassification-wrapper{
+  width: fit-content;
+  border: 3px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.addClassForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.addClassForm input {
+  padding: .8rem;
+  margin-bottom: .5rem;
+}
+
+#addClassBtn {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #eee;
+  background-color: #35116e;
+  border-radius: 10px;
+  transition: background-color .5s;
+  padding: 1rem;
+}
+
+#addClassBtn:hover {
+  background-color:#6c27db;
+}
+
+
+/******* VALIDATION STYLES*****************
+******************************************/
+input:required:invalid:not(:placeholder-shown):not(.login_pass), input:focus:invalid:not(:placeholder-shown):not(.login_pass) {
+  border-left:8px solid red;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+ input:required:valid:not(.login_pass) {
+  border-left:8px solid green;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
  }
 
 main .notice li{
   color: red;
   font-weight: bold;
 }
+
+
 
 /******* MOBILE VIEW***********
 ******************************/

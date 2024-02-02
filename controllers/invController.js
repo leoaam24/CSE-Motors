@@ -44,4 +44,144 @@ invCont.buildByInventoryId = async function (req, res, next) {
         throw(err)
     }
 }
+
+/* ***************************
+ *  Build management view
+ * ************************** */
+invCont.buildManagementView = async function(req, res, next){
+    try {
+        let nav = await utilities.getNav()
+        res.render("./inventory/management", {
+            errors: null,
+            title: "Management View",
+            nav,
+        })
+    } catch(err) {
+        throw(err)
+    }
+}
+
+/* ***************************
+ *  Build add classification view
+ * ************************** */
+invCont.buildAddClassificationView = async function(req, res, next){
+    try {
+        let nav = await utilities.getNav()
+        res.render("./inventory/add-classification", {
+            errors: null,
+            title: "Add Classification",
+            nav,
+        })
+    } catch(err){
+        throw(err)
+    }
+}
+
+/* ***************************
+ *  Process Add Classification
+ * ************************** */
+invCont.addClassificationDatabase = async function(req, res){
+    let nav = await utilities.getNav()
+    const { classification_name } = req.body
+    const addClass = await invModel.addClassDatabase(classification_name)
+
+    if (addClass) {
+        req.flash(
+            "notice",
+            `New Classification named ${classification_name} was added.`
+        )
+        res.status(201).redirect("/")
+    } else {
+        req.flash("notice", "Sorry, the registration failed")
+        res.status(501).render("account/addClassification", {
+            title: "Add Classification",
+            nav,
+            classification_name,
+        })
+    }
+
+}
+
+/* ***************************
+ *  Build add inventory view
+ * ************************** */
+invCont.buildAddInventoryView = async function(req, res, next){
+    try {
+        let nav = await utilities.getNav()
+        let classData = await invModel.getClassifications()
+        let classNames = []
+        classData.rows.forEach(classfication => {
+           classNames.push(classfication) 
+        })
+        res.render("./inventory/add-inventory", {
+            errors: null,
+            title: "Add Inventory",
+            nav,
+            classNames,
+        })
+    } catch(err){
+        throw(err)
+    }
+}
+
+/* ***************************
+ *  Process Add Inventory
+ * ************************** */
+invCont.addInventoryDatabase = async function(req, res){
+    let nav = await utilities.getNav()
+    const { 
+        inv_make, 
+        inv_model, 
+        inv_year, 
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id } = req.body
+    const addInventory = await invModel.addInvDatabase(
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id
+    )
+    if (addInventory) {
+        let classData = await invModel.getClassifications()
+        let classNames = []
+        classData.rows.forEach(classfication => {
+           classNames.push(classfication) 
+        })
+        req.flash(
+            "notice",
+            `New Car Added to the Inventory.`
+        )
+        res.status(200).render("./inventory/add-inventory", {
+            errors: null,
+            title: "Add Inventory",
+            nav,
+            classNames,
+        })
+    } else {
+        req.flash("notice", "Sorry, the registration failed")
+        res.status(501).render("./inventory/add-inventory", {
+            errors: null,
+            title: "Add Inventory",
+            nav,
+            classNames,
+        })
+    }
+
+}
+
+
+
 module.exports = invCont
+
+
