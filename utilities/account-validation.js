@@ -88,16 +88,17 @@ validate.loginRules = () => {
                   throw new Error("Email is not registered. Please register or try a different email")
                 }
                 const isValidCredentials = await accountModel.checkCredentials(account_email, account_password)
+                console.log(isValidCredentials)
                 if(!isValidCredentials){
                     throw new Error("Invalid email or password")
                 }
             }),
    
         // password is required and must be strong password
-        body("account_password")
-            .trim()
-            .isLength({min: 12})
-            .withMessage("Password must have at least 12 characters length"),
+        // body("account_password")
+        //     .trim()
+        //     .isLength({min: 12})
+        //     .withMessage("Password must have at least 12 characters length"),
            
     ]
 }

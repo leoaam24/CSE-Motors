@@ -1,4 +1,5 @@
 const pool = require('../database/')
+const bcrypt = require("bcryptjs")
 
 /* *****************************
 *   Register new account
