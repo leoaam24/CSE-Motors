@@ -98,7 +98,7 @@ invCont.addClassificationDatabase = async function(req, res){
         })
     } else {
         req.flash("notice", "Sorry, the registration failed")
-        res.status(501).render("inventory/add-classification", {
+        res.status(500).render("inventory/add-classification", {
             title: "Add Classification",
             nav,
             classification_name,
@@ -118,7 +118,7 @@ invCont.buildAddInventoryView = async function(req, res, next){
         classData.rows.forEach(classfication => {
            classNames.push(classfication) 
         })
-        res.render("./inventory/add-inventory", {
+        res.render("inventory/add-inventory", {
             errors: null,
             title: "Add Inventory",
             nav,
@@ -167,7 +167,7 @@ invCont.addInventoryDatabase = async function(req, res){
             "notice",
             `New Car Added to the Inventory.`
         )
-        res.status(200).render("./inventory/add-inventory", {
+        res.status(200).render("inventory/add-inventory", {
             errors: null,
             title: "Add Inventory",
             nav,
@@ -175,11 +175,10 @@ invCont.addInventoryDatabase = async function(req, res){
         })
     } else {
         req.flash("notice", "Sorry, the registration failed")
-        res.status(501).render("./inventory/add-inventory", {
-            errors: null,
+        res.status(500).render("../inventory/add-inventory", {
+            errors,
             title: "Add Inventory",
             nav,
-            classNames,
         })
     }
 

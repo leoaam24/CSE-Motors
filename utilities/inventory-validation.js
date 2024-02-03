@@ -71,7 +71,13 @@ validate.checkAddInventoryPost = async function(req, res, next) {
             errors,
             title: "Add Inventory",
             nav,
-            classNames
+            classNames,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_price,
+            inv_miles,
         })
         return
     }
@@ -90,7 +96,6 @@ validate.addClassificationRules = () => {
         .withMessage("Please provide the new car classification.")
         .custom(async (classification_name) => {
             const classExist = await invModel.checkExistingClassification(classification_name)
-            console.log(classExist)
             if (classExist) {
                 throw new Error('Classification Exists. Please enter a new one.')
             }
@@ -103,22 +108,19 @@ validate.addClassificationRules = () => {
  * *****************************/
 validate.checkAddClassification = async function(req, res, next) {
     const {classification_name} = req.body
-    console.log(classification_name)
     let errors = []
     errors = validationResult(req)
-    console.log(errors)
     if (!errors.isEmpty()){
         let nav = await utilities.getNav()
         res.render("inventory/add-classification", {
             errors,
             title: "Add Classification",
-            nav
+            nav,
+            classification_name
         })
         return
     } 
     next()
-   
-
 
 }
 

@@ -446,9 +446,30 @@ nav ul li a{
   padding: .5rem;
 }
 
+#inv_color {
+  margin: 0;
+  padding: 0;
+  height: 5vh;
+}
+
 #inv_description {
   margin-bottom: 1rem;
   padding: 1rem;
+}
+
+#addInvBtn {
+  cursor: pointer;
+  border-radius: 15px;
+  margin: auto;
+  width: 80%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: background-color 1s;
+}
+
+#addInvBtn:hover{
+  color: #eee;
+  background-color: #464646;
 }
 
 /******* ADD CLASSIFICATION STYLE************
@@ -510,6 +531,9 @@ main .notice li{
 /******* MOBILE VIEW***********
 ******************************/
 
+/*************************************
+ *************MEDIUM VIEW*************
+ *************************************/
 @media screen and (min-width:590px)and (max-width:1079px) {
 
   #hero-wrapper {
@@ -576,8 +600,51 @@ main .notice li{
   .car-details .car-price-wrapper {
     align-self: center;
   }
+
+  #form-wrapper {
+    width: 80%;
+  }
+
+  #loginBtn {
+    width: 80%;
+    margin: .5rem auto 0 auto;
+    font-size: 1rem;
+  }
+
+  #management-wrapper {
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .management-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .management-container li {
+    align-self: center;
+  }
+
+  #addClassification-wrapper {
+    margin: auto;
+  }
+
+  #addInventory-wrapper {
+    width: 80%;
+  }
+
+  #addInvBtn {
+    font-size: 1rem;
+  }
 }
 
+/*************************************
+ ***********SMALLEST VIEW*************
+ *************************************/
 @media screen and (max-width:589px) {
   main {
     display: flex;
@@ -687,9 +754,52 @@ main .notice li{
     font-size: 1.5rem;
   }
 
-  
+  #form-wrapper {
+    width: 100%;
+  }
 
+  .myForm {
+    width: 100%;
+  }
 
+  .myForm label {
+    font-size: .8rem;
+  }
+
+  .myForm input {
+    width: 100%;
+  }
+
+  #loginBtn {
+    width: 100%;
+    margin: .5rem auto 0 auto;
+    font-size: 1rem;
+  }
+
+  .management-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .management-container li {
+    align-self: center;
+  }
+
+  #addClassification-wrapper {
+    width: 100%;
+  }
+
+  #addClassBtn {
+    font-size: .8rem;
+  }
+
+  #addInventory-wrapper {
+    width: 100%;
+  }
+
+  #addInvBtn {
+    font-size: .8rem;
+  }
 
 }
 

@@ -17,7 +17,7 @@
 <div id="addClassification-wrapper">
     <form action="/inv/addClassification" method="post" name="addClassificationForm" class="addClassForm">
         <label for="classification_name">New Classification</label>
-        <input type="text" name="classification_name" id="classification_name" pattern="\S+" autofocus required>
+        <input type="text" name="classification_name" id="classification_name" value="<%=locals.classification_name%>" pattern="\S+" autofocus required>
         <input type="submit" id="addClassBtn" value="Add Classification">
     </form>
     
