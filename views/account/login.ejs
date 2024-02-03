@@ -17,7 +17,7 @@
 <div id=form-wrapper>
 <form class="myForm" id="loginForm" action="/account/login" method="post">
 <label for="account_email">Email</label>
-<input type="email" id="account_email" name="account_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please Enter a Valid Email" placeholder="Email" autofocus required>
+<input type="email" id="account_email" name="account_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please Enter a Valid Email" placeholder="Email" value="<%=locals.account_email%>" autofocus required>
 <label for="account_password">Password</label>
 <input type="password" id="account_password" name="account_password" placeholder="Password" title="Please Enter Your Password" class="login_pass" required>
 <span><i>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></span>
