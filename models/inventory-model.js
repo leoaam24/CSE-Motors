@@ -85,13 +85,17 @@ async function addInvDatabase(
 
 async function checkExistingClassification(classification_name){
     try {
-        const sql = "SELECT * FROM public.classification WHERE classification_name = $1"
+    const sql = `SELECT * FROM classification WHERE classification_name = $1`
     const className = await pool.query(sql, [classification_name])
-    return className.rowCount
+        console.log(className.rowCount)
+        if (className.rowCount == 0) {
+            return false
+        } else {
+            return className.rowCount
+        }
     } catch (error) {
         throw new Error('There is an error upon checking if classification name exists')
     }
-    
     
 }
 

@@ -88,12 +88,13 @@ validate.addClassificationRules = () => {
         .trim()
         .isLength({ min: 1 })
         .withMessage("Please provide the new car classification.")
-        .custom(async (classfication_name) => {
-            const classExist = await invModel.checkExistingClassification(classfication_name)
+        .custom(async (classification_name) => {
+            const classExist = await invModel.checkExistingClassification(classification_name)
+            console.log(classExist)
             if (classExist) {
                 throw new Error('Classification Exists. Please enter a new one.')
             }
-        }),
+        })
     ]
 }
 
@@ -101,17 +102,24 @@ validate.addClassificationRules = () => {
  * Check Add Classification POST
  * *****************************/
 validate.checkAddClassification = async function(req, res, next) {
-    const {classfication_name} = req.body
+    const {classification_name} = req.body
+    console.log(classification_name)
     let errors = []
     errors = validationResult(req)
-    let nav = await utilities.getNav()
+    console.log(errors)
     if (!errors.isEmpty()){
+        let nav = await utilities.getNav()
         res.render("inventory/add-classification", {
             errors,
             title: "Add Classification",
             nav
         })
-    }
+        return
+    } 
+    next()
+   
+
+
 }
 
 

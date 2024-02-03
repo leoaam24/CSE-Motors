@@ -83,6 +83,7 @@ invCont.buildAddClassificationView = async function(req, res, next){
 invCont.addClassificationDatabase = async function(req, res){
     let nav = await utilities.getNav()
     const { classification_name } = req.body
+    console.log(classification_name)
     const addClass = await invModel.addClassDatabase(classification_name)
 
     if (addClass) {
@@ -90,10 +91,14 @@ invCont.addClassificationDatabase = async function(req, res){
             "notice",
             `New Classification named ${classification_name} was added.`
         )
-        res.status(201).redirect("/")
+        res.status(200).render("inventory/add-classification", {
+            errors,
+            title: "Add Classification",
+            nav
+        })
     } else {
         req.flash("notice", "Sorry, the registration failed")
-        res.status(501).render("account/addClassification", {
+        res.status(501).render("inventory/add-classification", {
             title: "Add Classification",
             nav,
             classification_name,
