@@ -92,7 +92,7 @@ invCont.addClassificationDatabase = async function(req, res){
             `New Classification named ${classification_name} was added.`
         )
         res.status(200).render("inventory/add-classification", {
-            errors,
+            errors: null,
             title: "Add Classification",
             nav
         })
@@ -167,7 +167,7 @@ invCont.addInventoryDatabase = async function(req, res){
             "notice",
             `New Car Added to the Inventory.`
         )
-        res.status(200).render("inventory/add-inventory", {
+        res.status(200).render("./inventory/add-inventory", {
             errors: null,
             title: "Add Inventory",
             nav,
@@ -175,8 +175,8 @@ invCont.addInventoryDatabase = async function(req, res){
         })
     } else {
         req.flash("notice", "Sorry, the registration failed")
-        res.status(500).render("../inventory/add-inventory", {
-            errors,
+        res.status(500).render("./inventory/add-inventory", {
+            errors: null,
             title: "Add Inventory",
             nav,
         })
