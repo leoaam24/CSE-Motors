@@ -1,0 +1,46 @@
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="form-wrapper">
+<form class="myForm" action="/account/update" method="post">
+<fieldset>
+<legend>Account Update</legend>
+<label for="account_firstname">First Name</label>
+<input type="text" id="account_firstname" name="account_firstname" title="Please Enter Your First Name" placeholder="First Name" value="<%= locals.account_firstname %>" autofocus required>
+<label for="account_lastname">Last Name</label>
+<input type="text" id="account_lastname" name="account_lastname" placeholder="Last Name" title="Please Enter Your Last Name" value="<%= typeof account_lastname !== 'undefined' ? account_lastname : '' %>" required>
+<label for="account_email">Email</label>
+<input type="email" id="account_email" name="account_email" title="Please Enter a Valid Email" placeholder="Email" value="<%= typeof account_email !== 'undefined' ? account_email : '' %>" required>
+<input type="submit" Value="Update" id="loginBtn">
+<input type="hidden" id="account_id" name="account_id" value="<%=locals.account_id %>">
+</fieldset>
+</form>
+
+<form class="myForm2" action="/account/update/password" method="post">
+    <fieldset>
+    <legend>Password Update</legend>
+    <label for="account_password">Old Password</label>
+    <input type="password" id="old_account_password" name="old_account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Password" title="Please Enter Your Password" required>
+    <label for="account_password">New Password</label>
+    <input type="password" id="new_account_password" name="new_account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Password" title="Please Enter Your Password" required>
+    <span><i>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></span>
+    <input type="submit" Value="Change Password" id="updateBtn">
+    <input type="hidden" id="account_id" name="account_id" value="<%=locals.account_id %>">
+    </fieldset>
+</form>
+
+
+</div>

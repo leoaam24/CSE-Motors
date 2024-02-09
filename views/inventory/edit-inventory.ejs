@@ -1,0 +1,53 @@
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="editInventory-wrapper">
+    <form action="/inv/update" method="post" name="editInventory" id="editInvForm">
+        <label for="classification_id">Classifications</label>
+        <select name="classification_id" id="classification_id">
+        <% if(classificationSelect) {%>
+        <% classificationSelect.rows.forEach(classification => { %>
+            <option value="<%=classification.classification_id%>"><%=classification.classification_name%></option>
+           <%})%>
+        </select>
+        <% } %>
+        <label for="inv_make">Make</label>
+        <input type="text" name="inv_make" id="inv_make" placeholder="Make" value="<%=locals.inv_make%>" required>
+        <label for="inv_model">Model</label>
+        <input type="text" name="inv_model" id="inv_model" placeholder="Model" value="<%=locals.inv_model%>" required>
+        <label for="inv_year">Year</label>
+        <input type="text" name="inv_year" id="inv_year" placeholder="Year" value="<%=locals.inv_year%>" required>
+        <label for="inv_description">Description</label>
+        <textarea id="inv_description" name="inv_description" maxlength="500" placeholder="Description" required><%=locals.inv_description%></textarea>
+        <label for="inv_image">Image Path</label>
+        <input type="text" name="inv_image" id="inv_image" value="<%=locals.inv_image%>" placeholder="Image Path" required>
+        <label for="inv_thumbnail">Thumbnail Path</label>
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="<%=locals.inv_thumbnail%>" placeholder="Thumbnail Path" required>
+        <label for="inv_price">Price</label>
+        <input type="text" name="inv_price" id="inv_price" pattern="\d+*" placeholder="Price" value="<%=locals.inv_price%>" required>
+        <label for="inv_miles">Miles</label>
+        <input type="text" name="inv_miles" id="inv_miles" pattern="\d+*" placeholder="Miles" value="<%=locals.inv_miles%>" required>
+        <label for="inv_color">Color</label>
+        <input type="text" name="inv_color" id="inv_color" value="<%=locals.inv_color%>">
+        <input type="submit" name="submit" id="editInvBtn" value="Update Vehicle">
+        <input type="hidden" name="inv_id" <% if (locals.inv_id) { %>
+            value="<%= locals.inv_id%>"
+       <% }%>>
+    </form>
+    
+</div>
+
+<noscript>You have to enable JavaScript to use the application</noscript>

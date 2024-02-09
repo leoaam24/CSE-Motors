@@ -414,6 +414,51 @@ nav ul li a{
   text-decoration: none;
 }
 
+.myForm2{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.myForm2 fieldset span{
+  margin-bottom: .5rem;
+}
+
+.myForm2 label{
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+
+.myForm2 input{
+  padding: .6rem;
+  margin-bottom: 1rem;
+}
+
+/* UPDATE VIEW */
+.myForm2 fieldset{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#updateBtn {
+  cursor: pointer;
+  font-size: .8rem;
+  font-weight: bold;
+  width: 50%;
+  margin: auto;
+  border-radius: 10px;
+  transition: background-color 1s;
+  border: 1px solid #eee;
+}
+
+#updateBtn:hover{
+  color: #eee;
+  background-color: #471894;
+}
+
 /******* ADD INVENTORY STYLE*****************
 ********************************************/
 #addInventory-wrapper{
@@ -506,6 +551,41 @@ nav ul li a{
   background-color:#6c27db;
 }
 
+/******* EDIT INVENTORY STYLES***************
+********************************************/
+#editInventory-wrapper{
+  line-height: 1.5;
+  color: #eee;
+}
+#editInvForm {
+  background-color: #35116e;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+#editInvForm #inv_color {
+  height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#editInvBtn {
+  cursor: pointer;
+  border-radius: 15px;
+  margin: auto;
+  width: 80%;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: background-color 1s;
+}
+
+#editInvBtn:hover{
+  color: #eee;
+  background-color: #464646;
+}
 
 /******* VALIDATION STYLES*****************
 ******************************************/

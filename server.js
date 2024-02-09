@@ -17,6 +17,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -41,18 +42,25 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 // For parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
+// For cookie parsing
+app.use(cookieParser())
+// For JWT Checking
+app.use(utilities.CheckJWTToken)
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout","./layouts/layout")
+
 /* ***********************
  * Routes
  *************************/
 app.use(static)
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+// Route for logout
+app.get("/logout", baseController.logOut)
 // Inventory route
 app.use("/inv", inventoryRoute)
 // Account Route 
@@ -61,7 +69,6 @@ app.use("/account", accRoute)
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
-
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
