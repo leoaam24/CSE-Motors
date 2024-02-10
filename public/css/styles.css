@@ -949,10 +949,31 @@ main .notice li{
     width: 100%;
   }
 
+  .myForm2 {
+    width: 100%;
+  }
+
+  .myForm2 label {
+    font-size: .8rem;
+  }
+
+  .myForm2 input {
+    width: 100%;
+  }
+
   #loginBtn {
     width: 100%;
     margin: .5rem auto 0 auto;
     font-size: 1rem;
+  }
+
+  #updateBtn {
+    font-size: .5rem;
+    text-align: center;
+  }
+
+  #account-management-wrapper p a{
+    font-size: .5rem;
   }
 
   .management-container {
