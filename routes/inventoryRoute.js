@@ -19,15 +19,15 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route for Inventory Edit
 router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildInventoryEditView))
 //Route for Deleting Invetory Entry
-router.get("/delete/:inventory_id", invController.buildDeleteInvView)
+router.get("/delete/:inventory_id", utilities.handleErrors(invController.buildDeleteInvView))
 
 //Route to post add classification
 router.post('/addClassification/', invValidation.addClassificationRules(), invValidation.checkAddClassification, utilities.handleErrors(invController.addClassificationDatabase))
 //Route to post add inventory
 router.post('/addInventory/', invValidation.addInventoryRules(), invValidation.checkAddInventoryPost, utilities.handleErrors(invController.addInventoryDatabase))
 //Route to post edit inventory
-router.post('/update/',invValidation.addInventoryRules(), invValidation.checkUpdateData, invController.updateInventory)
+router.post('/update/',invValidation.addInventoryRules(), invValidation.checkUpdateData, utilities.handleErrors(invController.updateInventory))
 //Route to post delete inventory
-router.post('/delete/', invController.deleteInventory)
+router.post('/delete/', utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;

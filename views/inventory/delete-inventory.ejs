@@ -24,6 +24,7 @@
         <label for="inv_year">Year</label>
         <input type="text" name="inv_year" id="inv_year" placeholder="Year" value="<%=locals.inv_year%>" required readonly>
         <label for="inv_price">Price</label>
+        <input type="text" name="inv_price" id="inv_price" pattern="\d+*" placeholder="Price" value="<%=locals.inv_price%>" required readonly>
         <input type="submit" name="submit" id="deleteInvBtn" value="Delete Vehicle" readonly>
         <input type="hidden" name="inv_id" <% if (locals.inv_id) { %>
             value="<%= locals.inv_id%>"

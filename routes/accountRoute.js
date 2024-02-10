@@ -5,15 +5,15 @@ const utilities = require("../utilities/")
 const accValidate = require("../utilities/account-validation")
 
 //Route to access account
-router.get("/", utilities.checkLogin, accCont.buildAccount)
+router.get("/", utilities.checkLogin, utilities.handleErrors(accCont.buildAccount))
 // Route to Login
 router.get("/login", utilities.handleErrors(accCont.buildLogin))
 // Route to Register
 router.get("/register", utilities.handleErrors(accCont.buildRegister))
 // Route to Account Update
-router.get("/update", accCont.buildUpdateView)
+router.get("/update", utilities.handleErrors(accCont.buildUpdateView))
 // Route to Password Update
-router.get("/update/password", accCont.buildUpdateView)
+router.get("/update/password", utilities.handleErrors(accCont.buildUpdateView))
 
 
 // Route to Post Register
@@ -26,8 +26,8 @@ router.post(
   utilities.handleErrors(accCont.accountLogin)
 )
 // Process Update Attempt
-router.post("/update",accValidate.updateAccountRules(), accValidate.checkUpdateData, accCont.updateData )
-router.post("/update/password", accValidate.updatePasswordRules(), accValidate.checkUpdatePasswordData, accCont.updatePassword )
+router.post("/update",accValidate.updateAccountRules(), accValidate.checkUpdateData, utilities.handleErrors(accCont.updateData))
+router.post("/update/password", accValidate.updatePasswordRules(), accValidate.checkUpdatePasswordData, utilities.handleErrors(accCont.updatePassword))
 
 
   

@@ -219,6 +219,7 @@ async function updatePassword(req, res) {
         const accountData = await accountModel.getAccountById(account_id)
         let account_firstname = accountData.account_firstname
         let account_lastname = accountData.account_lastname
+        let account_email = accountData.account_email
         req.flash("notice", "Password Successfully Updated.")
         res.render("account/update/password", {
             errors: null,

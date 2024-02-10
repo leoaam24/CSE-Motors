@@ -34,10 +34,13 @@ body {
 }
 
 #tools {
-  justify-content: center;
+  justify-content: space-around;
 }
 
 #tools a{
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 1rem;
   color: black;
   justify-self: end;
   text-decoration: none;
@@ -69,6 +72,13 @@ nav ul li a{
 }
 
 /******* Main Style Starts Here ***************/
+main {
+  padding: 1rem;
+  border: 3px solid #5555;
+  border-radius: 1rem;
+  box-shadow: 0 0px 10px 2px #200a44;
+}
+
 #hero-wrapper {
  display: flex;
  flex-direction: row;
@@ -376,6 +386,50 @@ nav ul li a{
 
 /******* MANAGEMENT STYLES*****************
 ******************************************/
+#account-management-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#account-management-wrapper h2 {
+  margin: 0;
+}
+
+#account-management-wrapper p {
+  margin-bottom: 1rem;
+}
+
+#updateAccount a{
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: #eee;
+  text-decoration: none;
+  transition: color 1s;
+  background-color: #200a44;
+}
+
+#updateAccount a:hover{
+  color: #4c1c99;
+}
+
+#invManagement a{
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: #eee;
+  text-decoration: none;
+  transition: color 1s;
+  background-color: #200a44;
+  margin-top: 1rem;
+}
+
+#invManagement a:hover{
+  color: #4c1c99;
+}
+
 #management-wrapper{
   border: 3px solid black;
   border-radius: 1rem;
@@ -567,6 +621,10 @@ nav ul li a{
   border-radius: 1rem;
 }
 
+#editInvForm input{
+  padding: .8rem;
+}
+
 #editInvForm #inv_color {
   height: 1.5rem;
   margin-bottom: 1rem;
@@ -587,6 +645,47 @@ nav ul li a{
   background-color: #464646;
 }
 
+/******* DELETE INVENTORY STYLES***************
+********************************************/
+#deleteInventory-wrapper {
+  background-color: #35116e;
+  width: 50%;
+  margin: auto;
+  border-radius: 1rem;
+}
+
+#deleteInvForm {
+  line-height: 1.5;
+  padding: 1.5rem;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+#deleteInvForm label {
+  margin-top: .5rem;
+}
+
+#deleteInvForm input {
+  padding: .75rem;
+  border-end-end-radius: 10px;
+}
+
+#deleteInvBtn {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 80%;
+  border-radius: 1rem;
+  margin: 1rem auto auto auto;
+  transition: background-color .5s;
+}
+
+#deleteInvBtn:hover {
+  background-color:#6c27db;
+  color: #eee;
+}
+
 /******* VALIDATION STYLES*****************
 ******************************************/
 input:required:invalid:not(:placeholder-shown):not(.login_pass), input:focus:invalid:not(:placeholder-shown):not(.login_pass) {
@@ -602,7 +701,7 @@ input:required:invalid:not(:placeholder-shown):not(.login_pass), input:focus:inv
  }
 
 main .notice li{
-  color: red;
+  color: rgb(148, 9, 9);
   font-weight: bold;
 }
 

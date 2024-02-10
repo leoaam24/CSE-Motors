@@ -32,13 +32,13 @@
 <form class="myForm2" action="/account/update/password" method="post">
     <fieldset>
     <legend>Password Update</legend>
-    <label for="account_password">Old Password</label>
+    <label for="old_account_password">Old Password</label>
     <input type="password" id="old_account_password" name="old_account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Password" title="Please Enter Your Password" required>
-    <label for="account_password">New Password</label>
-    <input type="password" id="new_account_password" name="new_account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Password" title="Please Enter Your Password" required>
+    <label for="new_account_password">New Password</label>
+    <input type="password" id="new_account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" placeholder="Password" title="Please Enter Your Password" required>
     <span><i>There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></span>
     <input type="submit" Value="Change Password" id="updateBtn">
-    <input type="hidden" id="account_id" name="account_id" value="<%=locals.account_id %>">
+    <input type="hidden" id="account_id_2" name="account_id" value="<%=locals.account_id %>">
     </fieldset>
 </form>
 

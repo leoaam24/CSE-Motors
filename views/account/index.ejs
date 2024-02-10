@@ -14,11 +14,14 @@
     </ul>
 <% } %>
 
+<div id="account-management-wrapper">
 <% if (locals.accountType == "Admin" || locals.accountType == "Employee") { %>
     <h2>Welcome <%=locals.accountFirstName%></h2>
-    <h3><a href="/account/update">Update Account Information</a></h3>
-    <h3><a href="/inv/">Inventory Management</a></h3>
+    <h3>Inventory Management</h3>
+    <p id="updateAccount"><a href="/account/update">Update Account Information</a></p>
+    <p id="invManagement"><a href="/inv/">Inventory Management</a></p>
 <% } else { %>
     <h2>Welcome <%=locals.accountFirstName%></h2>
-    <h3><a href="/account/update">Update Account Information</a></h3>
+    <p id="updateAccount"><a href="/account/update">Update Account Information</a></p>
 <% } %>
+</div>
