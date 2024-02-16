@@ -1,5 +1,6 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
+const ordModel = require("../models/orders-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -237,5 +238,56 @@ async function updatePassword(req, res) {
     }
 }
 
+/* ****************************************
+*  Deliver Order History View
+* *************************************** */
+async function buildOrderHistoryView(req, res, next) {
+    let token = req.cookies.jwt
+    let decoded = jwt.decode(token)
+    let account_id = decoded.account_id
+    let account_details = await accountModel.getAccountById(account_id)
+    let account_purchase = account_details.account_purchase
+    let order_history = []
+    let order_reference = []
+    let order_delivery = []
+    let order_contact = []
+    let promises = account_purchase.map(id => {
+        let result = ordModel.orderHistoryById(id);
+        if (!result) {
+            console.error(`No result for id: ${id}`);
+        }
+        return result;
+    });
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdateView, updateData, updatePassword }
+    try {
+        order_history = await Promise.all(promises);
+    } catch (error) {
+        console.error(error);
+    }
+
+    order_history.forEach(item => {
+        let data1 = item.ord_reference
+        let data2 = item.ord_address
+        let data3 = item.ord_contact
+        order_reference.push(data1)
+        order_delivery.push(data2)
+        order_contact.push(data3)
+    })
+
+
+    let nav = await utilities.getNav()
+    let responseLogin = res.locals.loggedin
+    res.render("account/orders", {
+        order_history,
+        order_reference,
+        order_delivery,
+        order_contact,
+        responseLogin,
+        title: "Order History",
+        nav,
+        errors: null,
+    })
+}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdateView, updateData, updatePassword, buildOrderHistoryView }

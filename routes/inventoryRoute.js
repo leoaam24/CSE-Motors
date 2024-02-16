@@ -2,6 +2,7 @@ const express = require("express")
 const router = new express.Router()
 const invController = require("../controllers/invController")
 const invValidation = require('../utilities/inventory-validation')
+const purchValidation = require("../utilities/purchase-validation")
 const utilities = require("../utilities/")
 
 //Route to management view
@@ -29,5 +30,10 @@ router.post('/addInventory/', invValidation.addInventoryRules(), invValidation.c
 router.post('/update/',invValidation.addInventoryRules(), invValidation.checkUpdateData, utilities.handleErrors(invController.updateInventory))
 //Route to post delete inventory
 router.post('/delete/', utilities.handleErrors(invController.deleteInventory))
+//Route to post purchase confirm
+router.post('/detail/checkout/:inventory_id', utilities.checkLogin, utilities.handleErrors(invController.buildConfirmPurchaseView))
+//Route to post process purchase
+router.post('/thank-you', purchValidation.confirmPurchaseRules(), purchValidation.checkConfirmPurchPost, invController.purchaseVehicle )
+
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const invModel = require("../models/inventory-model")
+const accModel = require("../models/account-model")
+const ordModel = require("../models/orders-model")
 const utilities = require("../utilities/")
+const jwt = require("jsonwebtoken")
 
 const invCont = {}
 
@@ -387,6 +390,74 @@ invCont.deleteInventory = async function(req, res, next){
 
 }
 
+/* ***************************
+ *  Build Confirm Purchase View
+ * ************************** */
+invCont.buildConfirmPurchaseView = async (req, res, next) => {
+    let nav = await utilities.getNav()
+    const invId = req.params.inventory_id
+    let responseLogin = res.locals.loggedin
+    let data = await invModel.getInventoryByInventoryId(invId)
+    let inv_make = data[0].inv_make
+    let inv_model = data[0].inv_model
+    let inv_price = data[0].inv_price
+    let inv_image = data[0].inv_image
+    let inv_year = data[0].inv_year
+    let inv_id = data[0].inv_id
+    try {
+        if (data) {
+            res.render("inventory/confirm-purchase", {
+                title: "Purchase",
+                nav,
+                responseLogin,
+                errors: null,
+                inv_make,
+                inv_model,
+                inv_price,
+                inv_image,
+                inv_year,
+                inv_id,
+            })
+        } else {
+            req.flash("notice", "Unable to show purchase page")
+            res.redirect("/")
+        }
+    } catch (error) {
+        throw new Error("Building Purchase Page Error")
+    }
+    
+}
+
+/* ***************************
+ *  Process Purchase 
+ * ***************************/
+invCont.purchaseVehicle = async function(req, res, next){
+    const { vehicle_id, delivery_address, phone_number } = req.body
+    let vehicleInfo = await invModel.getInventoryByInventoryId(vehicle_id)
+    let inv_make = vehicleInfo[0].inv_make
+    let inv_year = vehicleInfo[0].inv_year
+    let token = req.cookies.jwt
+    let decoded = jwt.decode(token)
+    let account_id = decoded.account_id
+    let nav = await utilities.getNav()
+    let responseLogin = res.locals.loggedin
+    let createOrder = await ordModel.createOrder(account_id, vehicle_id, inv_make, inv_year, delivery_address, phone_number)
+    let ord_id = createOrder.ord_id
+    let completeOrder = await ordModel.addOrderToAccount(account_id, ord_id)
+    console.log(completeOrder)
+    if (completeOrder) {
+        res.render("inventory/thank-you", {
+            title: "Thank You",
+            nav,
+            responseLogin,
+            errors: null
+        })
+    } else {
+        req.flash("notice", "Error in processing the purchase")
+        res.redirect("/")
+    }
+    
+}
 
 module.exports = invCont
 

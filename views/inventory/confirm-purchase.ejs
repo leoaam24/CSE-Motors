@@ -1,0 +1,37 @@
+<%# Content Heading%>
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="purchaseForm-wrapper">
+    <div class="vehicleOverview">
+        <h2><%-inv_year%> <%-inv_make%> <%-inv_model%></h2>
+        <img src="<%-inv_image%>" alt="<%-inv_model%> image">
+        <h3>Price: <%-inv_price%></h3>
+    </div>
+    <form action="/inv/thank-you/" method="post" id="buyNow">
+        <fieldset>
+            <legend>Delivery Details</legend>
+            <label for="delivery_address">Address</label>
+            <input type="text" name="delivery_address" id="delivery_address" value="<%=locals.delivery_address%>" autofocus>
+            <p>One of our agents will call you and will ask you about our payment options. Please indicate the best phone number to contact you.<p>
+            <label for="phone_number">Phone</label>
+            <input type="tel" name="phone_number" id="phone_number" value="<%=locals.phone_number%>" required>
+            <h3>Please confirm your purchase</h3>
+            <input type="submit" id="buyNow" value="Confirm Purchase">
+            <input type="hidden" value="<%-inv_id%>" name="vehicle_id" id="vehicle_id">
+        </fieldset>
+    </form>
+</div>

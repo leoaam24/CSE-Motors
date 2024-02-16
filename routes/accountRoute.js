@@ -14,6 +14,8 @@ router.get("/register", utilities.handleErrors(accCont.buildRegister))
 router.get("/update", utilities.handleErrors(accCont.buildUpdateView))
 // Route to Password Update
 router.get("/update/password", utilities.handleErrors(accCont.buildUpdateView))
+// Route to Password Update
+router.get("/orders", utilities.handleErrors(accCont.buildOrderHistoryView))
 
 
 // Route to Post Register

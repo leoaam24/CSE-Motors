@@ -80,7 +80,9 @@ Util.buildInventoryGrid = async function(data){
         subgrid += '<h3> Milage: ' + new Intl.NumberFormat('en-US').format(data[0].inv_miles) + '</h3>'
         subgrid += '<h3> Color: ' + data[0].inv_color + '</h3>'
         subgrid += '<h3 class="car-description">' + data[0].inv_description + '</h3>'
+        subgrid += '<form action="/inv/detail/checkout/' + data[0].inv_id +'"'+' '+ 'method="post">'
         subgrid += '<input type="submit" id="purchaseBtn" value="Purchase Now">'
+        subgrid += '</form>'
         subgrid += '</div>'
         grid += subgrid
         grid += '</div>' 

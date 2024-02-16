@@ -1,0 +1,38 @@
+<% if (title) { %>
+    <h1><%- title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error =>{ %>
+        <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<div id="orderHistory-wrapper">
+    <table class="mainTable">
+        <% if (locals.order_history) {%>
+                <% if (locals.order_history == null) { %>
+                    <h2>NO PURCHASE MADE</h2>
+                <%} else {%>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Delivery Address</th>
+                        <th>Contact Info</th>
+                    </tr>
+                    <% locals.order_history.forEach((item,index) => { %>
+                        <tr>
+                            <td><%=locals.order_reference[index]%></td>
+                            <td><%=locals.order_delivery[index]%></td>
+                            <td><%=locals.order_contact[index]%></td>
+                        </tr>
+                   <% }) %>
+                <% } %>
+        <%}%>
+    </table>
+</div>

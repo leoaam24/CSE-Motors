@@ -121,4 +121,13 @@ async function updateAccountPassword(account_id, new_account_password){
   return result.rowCount
 }
 
-module.exports = { registerAccount, checkExistingEmail, checkCredentials, getAccountByEmail, updateAccountData, checkExistingEmailValue, matchAccountPass, updateAccountPassword, getAccountById }
+/* ***********************************
+ *  Add Purchase to Account
+ * ***********************************/
+async function addPurchaseToAccount(account_id, inv_id) {
+  const sql = 'UPDATE public.account SET account_purchase = array_append(account_purchase, $1) WHERE account_id = $2 RETURNING account_id'
+  const result = await pool.query(sql, [inv_id, account_id])
+  return result.rowCount
+}
+
+module.exports = { registerAccount, checkExistingEmail, checkCredentials, getAccountByEmail, updateAccountData, checkExistingEmailValue, matchAccountPass, updateAccountPassword, getAccountById, addPurchaseToAccount }
