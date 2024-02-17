@@ -264,7 +264,7 @@ async function buildOrderHistoryView(req, res, next) {
     } catch (error) {
         console.error(error);
     }
-
+    console.log(order_history)
     order_history.forEach(item => {
         let data1 = item.ord_reference
         let data2 = item.ord_address
